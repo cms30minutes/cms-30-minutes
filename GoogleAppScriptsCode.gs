@@ -1,30 +1,27 @@
-/**
- * Add menu-option for publishing a sheet
- */
 function onOpen() {
   var ui = SpreadsheetApp.getUi();
-  ui.createMenu('CMS')
-    .addItem('Publiser endringer', 'publish')
+  ui.createMenu("CMS")
+    .addItem("Publiser", "onPublish")
     .addToUi();
 }
 
-/**
- * Publish changes in the active sheet
- */
-function publish() {
+function onPublish() {
   var sheet = SpreadsheetApp.getActiveSheet();
 
-  // Get the 2D array of cell values (CSV-data) from the active sheet
   var sheetData = sheet.getDataRange().getValues();
+  var jsonData = transformTableDataToJson(sheetData);
 
-  var sheetName = sheet.getName();
-  var filename = sheetName + ".json";
+  var filename = sheet.getName() + ".json";
 
-  var parsedData = transformTableDataToJson(sheetData);
-
-  // Upload to external CDN / Storage
-  upload(filename, parsedData);
+  upload(filename, jsonData);
 }
+
+
+
+
+var githubUsername = "cms30minutes";
+var githubRepo = "cms-30-minutes-cdn";
+var githubToken = "YOUR TOKEN HERE";
 
 /**
  * Transforms table data (2D array of cell values) to an array of JSON objects, 
@@ -50,10 +47,10 @@ function upload(filename, data) {
   var existingFile = null;
 
   try {
-    existingFile = JSON.parse(UrlFetchApp.fetch("https://api.github.com/repos/cms30minutes/cms-30-minutes-cdn/contents/" + filename, {
+    existingFile = JSON.parse(UrlFetchApp.fetch(`https://api.github.com/repos/${githubUsername}/${githubRepo}/contents/${filename}`, {
       method: "get",
       headers: {
-        'Authorization': `Bearer ${getGithubApiToken()}`,
+        'Authorization': `Bearer ${githubToken}`,
         'Content-Type': 'application/json'
       }
     }));
@@ -66,16 +63,12 @@ function upload(filename, data) {
   });
 
 
-  UrlFetchApp.fetch("https://api.github.com/repos/cms30minutes/cms-30-minutes-cdn/contents/" + filename, {
+  UrlFetchApp.fetch(`https://api.github.com/repos/${githubUsername}/${githubRepo}/contents/${filename}`, {
     method: "put",
     payload: githubData,
     headers: {
-      'Authorization': `Bearer ${getGithubApiToken()}`,
+      'Authorization': `Bearer ${githubToken}`,
       'Content-Type': 'application/json'
     }
   });
-}
-
-function getGithubApiToken() {
-  return "TOKEN HERE";
 }

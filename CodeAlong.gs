@@ -50,5 +50,5 @@ function upload(filename, data) {
 }
 
 function getGithubApiToken() {
-  return "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";
+  return "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";
 }

@@ -50,7 +50,7 @@ function upload(filename, data) {
   var existingFile = null;
 
   try {
-    existingFile = JSON.parse(UrlFetchApp.fetch("https://api.github.com/repos/oysmal/help-i-need-a-cms-in-30-minutes-cdn/contents/" + filename, {
+    existingFile = JSON.parse(UrlFetchApp.fetch("https://api.github.com/repos/cms30minutes/cms-30-minutes-cdn/contents/" + filename, {
       method: "get",
       headers: {
         'Authorization': `Bearer ${getGithubApiToken()}`,
@@ -66,7 +66,7 @@ function upload(filename, data) {
   });
 
 
-  UrlFetchApp.fetch("https://api.github.com/repos/oysmal/help-i-need-a-cms-in-30-minutes-cdn/contents/" + filename, {
+  UrlFetchApp.fetch("https://api.github.com/repos/cms30minutes/cms-30-minutes-cdn/contents/" + filename, {
     method: "put",
     payload: githubData,
     headers: {

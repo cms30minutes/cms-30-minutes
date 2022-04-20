@@ -9,7 +9,7 @@ export function Chart(props) {
 
   useEffect(() => {
     fetch(
-      `https://help-i-need-a-cms-in-ten-minutes.vercel.app/${item.Link}.json`,
+      `https://cms-30-minutes-cdn.vercel.app/${item.Link}.json`,
     ).then(async (res) => {
       const data = await res.json();
       setDataset(data);

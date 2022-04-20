@@ -8,7 +8,7 @@ export default function App() {
 
   useEffect(() => {
     fetch(
-      `https://help-i-need-a-cms-in-30-minutes-cdn.vercel.app/Pages.json`
+      `https://cms-30-minutes-cdn.vercel.app/Pages.json`
     ).then(async (res) => {
       const data = await res.json();
       setCMSData(data);

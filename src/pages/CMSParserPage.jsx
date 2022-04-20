@@ -20,7 +20,7 @@ export function CMSParserPage(props) {
   useEffect(() => {
     const fn = async () => {
       const res = await fetch(
-        `https://help-i-need-a-cms-in-30-minutes-cdn.vercel.app/${url}.json`
+        `https://cms-30-minutes.vercel.app/${url}.json`
       );
       const data = await res.json();
       setCMSData(data);

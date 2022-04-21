@@ -72,7 +72,7 @@ function createImage(item) {
 }
 
 function createLink(item) {
-  return <div><a className="my-2 underline color-blue-500" href={item.Link}>{item.Content}</a></div>;
+  return <div className="my-2"><a className="underline text-blue-500" href={item.Link}>{item.Content}</a></div>;
 }
 
 function createSpacer(item) {

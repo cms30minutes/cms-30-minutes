@@ -1,4 +1,5 @@
 import React, { useEffect, useState, Fragment } from "react";
+import {API_BASE} from "../../constants";
 import { Chart } from "../common/chart/Chart";
 import { Page } from "../common/page/Page";
 
@@ -20,7 +21,7 @@ export function CMSParserPage(props) {
   useEffect(() => {
     const fn = async () => {
       const res = await fetch(
-        `https://cms-30-minutes-cdn.vercel.app/${url}.json`
+        `${API_BASE}/${url}.json`
       );
       const data = await res.json();
       setCMSData(data);

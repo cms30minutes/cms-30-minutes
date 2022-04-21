@@ -1,5 +1,10 @@
 # help-i-need-a-cms-in-30-minutes
+
 Companion app for my talk "Hjelp! Jeg trenger et CMS om 30 minutter, hva gjør jeg?"
+
+## Forking
+
+Remember to change the `API_BASE` variable in `constants.ts`, so it points to the vercel url for your CMS-repository.
 
 ## Slides
 

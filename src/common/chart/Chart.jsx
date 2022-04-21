@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Chart as ChartJS } from "chart.js/auto";
 import { Chart as ReactChartJS } from "react-chartjs-2";
+import {API_BASE} from "../../../constants";
 
 export function Chart(props) {
   const { item } = props;
@@ -9,7 +10,7 @@ export function Chart(props) {
 
   useEffect(() => {
     fetch(
-      `https://cms-30-minutes-cdn.vercel.app/${item.Link}.json`,
+      `${API_BASE}/${item.Link}.json`,
     ).then(async (res) => {
       const data = await res.json();
       setDataset(data);

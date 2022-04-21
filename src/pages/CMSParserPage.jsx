@@ -12,6 +12,7 @@ const CMSComponentMap = {
   Chart: createChart,
   Spacer: createSpacer,
   Pre: createPre,
+  Link: createLink,
 };
 
 export function CMSParserPage(props) {
@@ -68,6 +69,10 @@ function createParagraph(item) {
 
 function createImage(item) {
   return <img className="my-2" src={item.Link} alt={item.Content} />;
+}
+
+function createLink(item) {
+  return <a className="my-2" href={item.Link}>{item.Content}</a>;
 }
 
 function createSpacer(item) {
